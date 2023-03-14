@@ -47,38 +47,42 @@ Consigli del giorno:
 */
 
 let carouselBox = document.querySelector(".carouselBox");
-let thumbnailsBox = document.querySelector(".thumbnailsBox")
-let carouselsImg = ["img/01.webp", "img/02.webp", "img/03.webp", "img/04.webp", "img/05.webp"];
+let thumbnailsBox = document.querySelector(".thumbnailsBox");
+let carouselsImg = ["./img/01.webp", "./img/02.webp", "./img/03.webp", "./img/04.webp", "./img/05.webp"];
+let thumbnailsImg = ["./img/01.webp", "./img/02.webp", "./img/03.webp", "./img/04.webp", "./img/05.webp"];
 let carousel = "";
-let carouselThumbnail = "";
+let carouselThumbnails = "";
 
 for (let i = 0; i < carouselsImg.length; i++) {
 
-    carousel += `<div class="carousel col-10 bg-black p-0 d-none">
+    carousel += `<div class="carousel bg-black p-0 d-none">
             <img src="${carouselsImg[i]}" alt="0${i + 1}-image">
+        </div>
+`;
+}
+
+
+
+for (let x = 0; x < thumbnailsImg.length; x++) {
+
+    carouselThumbnails += `<div class="carouselThumbnails col-auto position-relative">
+            <div class="thumbnailsCover cover w-100 h-100 position-absolute"></div>
+            <img src="${thumbnailsImg[x]}" alt="0${x + 1}-image">
         </div>
 `;
 }
 
 carouselBox.innerHTML = carousel + carouselBox.innerHTML;
 
-
-for (let x = 0; x < carouselsImg.length; x++) {
-
-    carouselThumbnail += `<div class="col-auto border-bottom-0 border-top-0">
-            <img src="${carouselsImg[x]}" alt="0${x + 1}-image">
-        </div>
-`;
-}
-
-thumbnailsBox.innerHTML = carouselThumbnail;
-console.log(carouselThumbnail);
+thumbnailsBox.innerHTML = carouselThumbnails;
 
 let currentIndex = 0;
 
 
 
 document.querySelectorAll(".carousel")[currentIndex].classList.add("active");
+document.querySelectorAll(".thumbnailsCover")[currentIndex].classList.remove("cover");
+document.querySelectorAll(".thumbnailsCover")[currentIndex].classList.add("highlight");
 
 const next = document.querySelector(".next");
 const previous = document.querySelector(".previous");
@@ -87,19 +91,26 @@ next.addEventListener("click", goNext);
 
 function goNext() {
     document.querySelectorAll(".carousel")[currentIndex].classList.remove("active");
-    if (currentIndex === carouselsImg.length - 1) {
+    document.querySelectorAll(".thumbnailsCover")[currentIndex].classList.add("cover");
+    document.querySelectorAll(".thumbnailsCover")[currentIndex].classList.remove("highlight");
+    if (currentIndex === carouselsImg.length - 1 && currentIndex === thumbnailsImg.length - 1) {
         currentIndex = 0;
     } else {
         currentIndex++;
     }
 
     document.querySelectorAll(".carousel")[currentIndex].classList.add("active");
+    document.querySelectorAll(".thumbnailsCover")[currentIndex].classList.remove("cover");
+    document.querySelectorAll(".thumbnailsCover")[currentIndex].classList.add("highlight");
 }
+
 
 previous.addEventListener("click", goPrevious);
 
 function goPrevious() {
     document.querySelectorAll(".carousel")[currentIndex].classList.remove("active");
+    document.querySelectorAll(".thumbnailsCover")[currentIndex].classList.add("cover");
+    document.querySelectorAll(".thumbnailsCover")[currentIndex].classList.remove("highlight");
     if (currentIndex === 0) {
         currentIndex = carouselsImg.length - 1;
     } else {
@@ -107,4 +118,6 @@ function goPrevious() {
     }
 
     document.querySelectorAll(".carousel")[currentIndex].classList.add("active");
+    document.querySelectorAll(".thumbnailsCover")[currentIndex].classList.remove("cover");
+    document.querySelectorAll(".thumbnailsCover")[currentIndex].classList.add("highlight");
 }

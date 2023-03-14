@@ -1,9 +1,8 @@
-.carouselBox {
-    width: 840px;
-    height: 268px;
+.wrapper {
+    background-color: #171d27;
 }
 
-.carousel {
+.carouselBox, .carousel {
     width: 700px;
     height: 268px;
 }
@@ -15,8 +14,6 @@
 
 .thumbnailsBox .col-auto {
     height: calc(100% / 5);
-    background-color: brown;
-    border: 1px solid white;
 }
 
 .carousel img {
@@ -36,17 +33,25 @@ button {
 }
 
 .next {
-    right: 140px;
-    top: 50%;
+    right: 60px;
+    bottom: -30px;
+    rotate: 90deg;
 }
 
 .previous {
-    left: 0;
-    top: 50%;
+    right: 60px;
+    top: -30px;
+    rotate: 90deg;
 }
 
 .active {
     display: block!important;
 }
 
+.cover {
+    background-color: rgba(0, 0, 0, 0.644);
+}
 
+.highlight {
+    border: 2px solid white;
+}
