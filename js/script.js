@@ -47,8 +47,10 @@ Consigli del giorno:
 */
 
 let carouselBox = document.querySelector(".carouselBox");
+let thumbnailsBox = document.querySelector(".thumbnailsBox")
 let carouselsImg = ["img/01.webp", "img/02.webp", "img/03.webp", "img/04.webp", "img/05.webp"];
 let carousel = "";
+let carouselThumbnail = "";
 
 for (let i = 0; i < carouselsImg.length; i++) {
 
@@ -58,9 +60,24 @@ for (let i = 0; i < carouselsImg.length; i++) {
 `;
 }
 
+carouselBox.innerHTML = carousel + carouselBox.innerHTML;
+
+
+for (let x = 0; x < carouselsImg.length; x++) {
+
+    carouselThumbnail += `<div class="col-auto border-bottom-0 border-top-0">
+            <img src="${carouselsImg[x]}" alt="0${x + 1}-image">
+        </div>
+`;
+}
+
+thumbnailsBox.innerHTML = carouselThumbnail;
+console.log(carouselThumbnail);
+
 let currentIndex = 0;
 
-carouselBox.innerHTML = carousel + carouselBox.innerHTML;
+
+
 document.querySelectorAll(".carousel")[currentIndex].classList.add("active");
 
 const next = document.querySelector(".next");
@@ -70,10 +87,23 @@ next.addEventListener("click", goNext);
 
 function goNext() {
     document.querySelectorAll(".carousel")[currentIndex].classList.remove("active");
-    if (currentIndex === carouselsImg.lenght - 1) {
+    if (currentIndex === carouselsImg.length - 1) {
         currentIndex = 0;
     } else {
         currentIndex++;
+    }
+
+    document.querySelectorAll(".carousel")[currentIndex].classList.add("active");
+}
+
+previous.addEventListener("click", goPrevious);
+
+function goPrevious() {
+    document.querySelectorAll(".carousel")[currentIndex].classList.remove("active");
+    if (currentIndex === 0) {
+        currentIndex = carouselsImg.length - 1;
+    } else {
+        currentIndex--;
     }
 
     document.querySelectorAll(".carousel")[currentIndex].classList.add("active");

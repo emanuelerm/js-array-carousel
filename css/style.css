@@ -1,3 +1,8 @@
+.carouselBox {
+    width: 840px;
+    height: 268px;
+}
+
 .carousel {
     width: 700px;
     height: 268px;
@@ -26,14 +31,22 @@
     object-fit: fill;
 }
 
+button {
+    z-index: 999;
+}
+
+.next {
+    right: 140px;
+    top: 50%;
+}
+
+.previous {
+    left: 0;
+    top: 50%;
+}
+
 .active {
     display: block!important;
 }
 
-.next {
-    right: -260px;
-}
 
-.previous {
-    left: -400px;
-}
