@@ -1,4 +1,5 @@
 /*
+
 Consegna:
 Dato un array contenente una lista di cinque immagini, creare un carosello come nello screenshot allegato.
 
@@ -28,4 +29,52 @@ Consigli del giorno:
 1. Costruiamo del carosello una versione statica contenente solamente un'immagine. Di questa versione statica al momento opportuno commenteremo (oscureremo) alcuni elementi per poterli riprodurre dinamicamente in js. Potremo quindi usarli come "template".
 2. Scriviamo sempre prima per punti il nostro algoritmo in italiano per capire cosa vogliamo fare
 3. Al momento giusto (ihihhi starà a voi capire quale) rispondete a questa domanda: "Quanti cicli servono?"
+
 */
+
+
+
+/* PROCEDIMENTO
+
+1. Creare variabile per identificare il contenitore del carosello
+
+2. Creare un array per le immagini 
+
+3. Utilizzare un ciclo for che contatena il template del carosello
+
+4. Creare una classe da attribuire all'immagine che vogliamo rendere visibile
+
+*/
+
+let carouselBox = document.querySelector(".carouselBox");
+let carouselsImg = ["img/01.webp", "img/02.webp", "img/03.webp", "img/04.webp", "img/05.webp"];
+let carousel = "";
+
+for (let i = 0; i < carouselsImg.length; i++) {
+
+    carousel += `<div class="carousel col-10 bg-black p-0 d-none">
+            <img src="${carouselsImg[i]}" alt="0${i + 1}-image">
+        </div>
+`;
+}
+
+let currentIndex = 0;
+
+carouselBox.innerHTML = carousel + carouselBox.innerHTML;
+document.querySelectorAll(".carousel")[currentIndex].classList.add("active");
+
+const next = document.querySelector(".next");
+const previous = document.querySelector(".previous");
+
+next.addEventListener("click", goNext);
+
+function goNext() {
+    document.querySelectorAll(".carousel")[currentIndex].classList.remove("active");
+    if (currentIndex === carouselsImg.lenght - 1) {
+        currentIndex = 0;
+    } else {
+        currentIndex++;
+    }
+
+    document.querySelectorAll(".carousel")[currentIndex].classList.add("active");
+}
